@@ -57,21 +57,21 @@ function getRandomIndex(){
   return Math.floor(Math.random()*allProducts.length);
   
 }
-let productIndexOne = getRandomIndex(); 
-let productIndexTwo = getRandomIndex(); 
-let productIndexThree = getRandomIndex();
-
-while(productIndexOne===productIndexTwo){
-  productIndexTwo = getRandomIndex();
-}
-while(productIndexTwo===productIndexThree){
-  productIndexThree = getRandomIndex();
-}
-while(productIndexOne===productIndexThree){
-  productIndexThree = getRandomIndex();
-}
 
 function renderImgs(){
+  let productIndexOne = getRandomIndex(); 
+  let productIndexTwo = getRandomIndex(); 
+  let productIndexThree = getRandomIndex();
+  
+  while(productIndexOne===productIndexTwo){
+    productIndexTwo = getRandomIndex();
+  }
+  while(productIndexTwo===productIndexThree){
+    productIndexThree = getRandomIndex();
+  }
+  while(productIndexOne===productIndexThree){
+    productIndexThree = getRandomIndex();
+  }
   img1.src = allProducts[productIndexOne].image;
   img1.alt = allProducts[productIndexOne].name;
   allProducts[productIndexOne].views++;
@@ -85,7 +85,6 @@ function renderImgs(){
   allProducts[productIndexThree].views++;
 }
 
-renderImgs();
 
 
 
@@ -108,10 +107,19 @@ for(let i = 0; i < allProducts.length; i++){
   }
 }
 renderImgs();
-
 if(rounds === 1){
   imageContainer.removeEventListener('click', handleClick);
 }
+}
+function handleShowResults(event){
+  if(round === 0){
+    for(let i = 0; i < allProducts.length; i++){
+      let li = document.createElement('li');
+
+      li.textContent = `${allProducts[i].name} was viewed ${allProducts[i].views} times and clicked on ${allProducts.clicks} times.`;
+    }
+  }
+
 }
 
 
@@ -123,3 +131,4 @@ if(rounds === 1){
 
 //*****Event LIsterners*****
 imageContainer.addEventListener('click', handleClick);
+displayResultsList.addEventListener('click', handleShowResults)
