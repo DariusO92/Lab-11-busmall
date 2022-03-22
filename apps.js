@@ -13,7 +13,7 @@ let img1 = document.getElementById('img1');
 let img2 = document.getElementById('img2');
 let img3 = document.getElementById('img3'); 
 let showResults = document.getElementById('show-results');
-let displayResultsList = document.getElementById('display-results-list');
+let displayResultsList = document.getElementById('display-results-listBtn');
 
 
 
@@ -57,29 +57,28 @@ function getRandomIndex(){
   return Math.floor(Math.random()*allProducts.length);
   
 }
-let productIndexOne = getRandomIndex(); 
-let productIndexTwo = getRandomIndex(); 
-let productIndexThree = getRandomIndex();
 
-while(productIndexOne===productIndexTwo){
-  productIndexTwo = getRandomIndex();
-}
-while(productIndexTwo===productIndexThree){
-  productIndexThree = getRandomIndex();
-}
-while(productIndexOne===productIndexThree){
-  productIndexThree = getRandomIndex();
-}
+
 
 function renderImgs(){
+  let productIndexOne = getRandomIndex(); 
+  let productIndexTwo = getRandomIndex(); 
+  let productIndexThree = getRandomIndex();
+  
+  while(productIndexOne === productIndexTwo || productIndexOne === productIndexThree){
+    productIndexOne = getRandomIndex();
+    while(productIndexTwo === productIndexThree || productIndexTwo === productIndexOne){
+      productIndexTwo = getRandomIndex();
+  }
+  }
   img1.src = allProducts[productIndexOne].image;
   img1.alt = allProducts[productIndexOne].name;
   allProducts[productIndexOne].views++;
-
+  
   img2.src = allProducts[productIndexTwo].image;
   img2.alt = allProducts[productIndexTwo].name;
   allProducts[productIndexTwo].views++;
-
+  
   img3.src = allProducts[productIndexThree].image;
   img3.alt = allProducts[productIndexThree].name;
   allProducts[productIndexThree].views++;
@@ -106,12 +105,28 @@ for(let i = 0; i < allProducts.length; i++){
   if(imgClicked === allProducts[i].name){
     allProducts[i].clicks++
   }
+  
+  console.log(allProducts[i].clicks);
+  renderImgs();
 }
-renderImgs();
 
 if(rounds === 1){
   imageContainer.removeEventListener('click', handleClick);
+  return;
 }
+
+}
+
+function handleShowResults(){
+if(rounds === 0){
+  for(let i = 0; i < allProducts.length; i++){
+    
+    let li = document.createElement('li');
+    li.textContent = `${allProducts[i].name} was viewed ${allProducts[i].views} times and clicked on ${allProducts[i].clicks} times.`;
+  }
+  displayResultsList.appendChild(li);
+  
+} console.log(handleShowResults);
 }
 
 
@@ -123,3 +138,4 @@ if(rounds === 1){
 
 //*****Event LIsterners*****
 imageContainer.addEventListener('click', handleClick);
+showResultss.addEventListener('click', handleShowResults);
