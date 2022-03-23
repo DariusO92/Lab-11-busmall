@@ -1,15 +1,44 @@
-section div {
-  display: inline-flex;
-  margin: 10px;
-  padding: 10px;
-  border: 15px;
-  border: black;
-  background-color: aqua;
-  
+
+body {
+  background-color:whitesmoke;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-img  {
-  border: 10px;
+
+h1 {
+  text-align: center;
+  font-size: 3em;
+  padding: 30px;
+  text-decoration: underline;
+  color:royalblue ;
+}
+h2 {
+  color: darkred;
+}
+
+main {
+
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-auto-rows: minmax(200px, 300px);
+}
+
+img {
+  width: 220px;
+  border: 1px solid black;
+}
+
+#container {
   display: flex;
-  margin: 23px;
-  size-adjust: 30%;
+  justify-content: space-evenly;
+  margin-top: 20px;
+
+}
+script {}
+main div {
+  width: max-content;
+  border: 2px solid #4d313b;
+  padding:10px;
+  border-radius: 5px;
+  background: sandybrown;
+
 }
