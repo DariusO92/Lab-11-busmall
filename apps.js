@@ -21,7 +21,12 @@ let img3 = document.getElementById('img3');
 // ******** Canvas Element for chart*******
 let ctx = document.getElementById('myChart').getContext('2d');
 
+// *****Local Storage*****
+let retrievedProducts = localStorage.getItem('products');
+// console.log('Retrieved Products', retrievedProducts);
 
+let parsedProducts = JSON.parse(retrievedProducts);
+console.log('Parsed Products >>>', parsedProducts);
 
 //*******Constructor****** 
 function Product(name, fileExtension = 'jpg',){
@@ -33,13 +38,19 @@ function Product(name, fileExtension = 'jpg',){
   productArray.push(this);
 }
 
-for(let i= 0; i < products.length; i++){
-  if(products[i] === 'sweep'){
-    new Product('sweep', 'png');
-  } else {
-      new Product(`${products[i]}`);
+if(retrievedProducts){
+  productArray = parsedProducts;
+
+} else{
+  for(let i= 0; i < products.length; i++){
+    if(products[i] === 'sweep'){
+      new Product('sweep', 'png');
+    } else {
+        new Product(`${products[i]}`);
+      }
     }
-  }
+}
+
 
 
 // new products('bag');
@@ -62,8 +73,7 @@ for(let i= 0; i < products.length; i++){
 // new products('water-can');
 // new products('wine-glass');
 // new products('wireframe', 'png');
-
-//  
+ 
 
 
 
@@ -125,10 +135,15 @@ function renderImgs(){
       rounds--;
       if(rounds === 0){
         imageContainer.removeEventListener('click', handleClick);
+        let stringifiedProducts = JSON.stringify(productArray);
+        // console.log('Stringified Products >>>', stringifiedProducts);
+
+        localStorage.setItem('products', stringifiedProducts);
+
         return;
       }
       renderImgs();
-    };
+    }; 
     
     function renderChart(){
       // let productNames = [];
