@@ -72,26 +72,6 @@ function getRandomIndex(){
   return Math.floor(Math.random()*products.length);
   
 }
-<<<<<<< HEAD
-
-function renderImgs(){
-  let productIndexOne = getRandomIndex(); 
-  let productIndexTwo = getRandomIndex(); 
-  let productIndexThree = getRandomIndex();
-  
-  while(productIndexOne===productIndexTwo){
-    productIndexTwo = getRandomIndex();
-  }
-  while(productIndexTwo===productIndexThree){
-    productIndexThree = getRandomIndex();
-  }
-  while(productIndexOne===productIndexThree){
-    productIndexThree = getRandomIndex();
-  }
-  img1.src = allProducts[productIndexOne].image;
-  img1.alt = allProducts[productIndexOne].name;
-  allProducts[productIndexOne].views++;
-=======
 
 
 
@@ -169,7 +149,7 @@ function renderImgs(){
               label: '# of Votes',
               data: productVotes,
               backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
+                'rgba(200, 85, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
                   'rgba(255, 206, 86, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
@@ -222,7 +202,6 @@ function renderImgs(){
       
       // renderChart();
   }
->>>>>>> e55d880ad88b24bf1c82926267c4c2e900370ccd
 
   //*****Event LIsterners*****
   imageContainer.addEventListener('click', handleClick);
@@ -231,14 +210,6 @@ function renderImgs(){
   
   
 
-<<<<<<< HEAD
-  img3.src = allProducts[productIndexThree].image;
-  img3.alt = allProducts[productIndexThree].name;
-  allProducts[productIndexThree].views++;
-}
-
-=======
->>>>>>> e55d880ad88b24bf1c82926267c4c2e900370ccd
 
 
 
@@ -250,34 +221,6 @@ function renderImgs(){
 
 //*******Event Handlers*******
 
-<<<<<<< HEAD
-function handleClick(event){
-rounds--;
-let imgClicked = event.target.alt;
-
-for(let i = 0; i < allProducts.length; i++){
-
-  if(imgClicked === allProducts[i].name){
-    allProducts[i].clicks++
-  }
-}
-renderImgs();
-if(rounds === 1){
-  imageContainer.removeEventListener('click', handleClick);
-}
-}
-function handleShowResults(event){
-  if(round === 0){
-    for(let i = 0; i < allProducts.length; i++){
-      let li = document.createElement('li');
-
-      li.textContent = `${allProducts[i].name} was viewed ${allProducts[i].views} times and clicked on ${allProducts.clicks} times.`;
-    }
-  }
-
-}
-=======
->>>>>>> e55d880ad88b24bf1c82926267c4c2e900370ccd
 
 
 
@@ -292,14 +235,3 @@ function handleShowResults(event){
   
 // } console.log(handleShowResults);
 // }
-
-<<<<<<< HEAD
-
-
-
-
-//*****Event LIsterners*****
-imageContainer.addEventListener('click', handleClick);
-displayResultsList.addEventListener('click', handleShowResults)
-=======
->>>>>>> e55d880ad88b24bf1c82926267c4c2e900370ccd
